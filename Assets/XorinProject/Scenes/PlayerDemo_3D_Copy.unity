@@ -666,7 +666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerShooting
   bulletPrefab: {fileID: 2827242854569222300, guid: 52b99bcfb0adb8c4c9cb0ce516778b53, type: 3}
   firePoint: {fileID: 1037015172}
-  bulletSpeed: 20
+  bulletSpeed: 3000
 --- !u!1 &818080059
 GameObject:
   m_ObjectHideFlags: 0

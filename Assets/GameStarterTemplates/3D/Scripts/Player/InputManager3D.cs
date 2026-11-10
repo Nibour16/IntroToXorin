@@ -17,6 +17,9 @@ public class InputManager3D : MonoBehaviour
     public bool Pause =>
         _coreInputs.Player.OpenPauseMenu.WasPressedThisFrame();
 
+    public bool Shoot =>
+        _playerInputs.Player.Shoot.WasPressedThisFrame();
+
     private void Awake()
     {
         _coreInputs = new PlayerInputs_Core();

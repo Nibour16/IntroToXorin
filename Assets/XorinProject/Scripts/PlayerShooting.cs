@@ -1,28 +1,41 @@
 using UnityEngine;
-using UnityEngine.InputSystem; // for the Input System types
 
+[RequireComponent(typeof(InputManager3D))]
 public class PlayerShooting : MonoBehaviour
 {
-    public GameObject bulletPrefab; // Set this via the Inspector
-    public Transform firePoint;     // Set this via the Inspector, where the bullet will be instantiated
-    public float bulletSpeed = 20f;
+    [SerializeField] private GameObject bulletPrefab; // Set this via the Inspector
+    [SerializeField] private Transform firePoint;     // Set this via the Inspector, where the bullet will be instantiated
 
-    void Update()
+    [SerializeField] private float bulletSpeed = 300f;
+
+    private Rigidbody rb;
+    private InputManager3D inputManager;
+
+    private void Awake() 
     {
-        // Using the new Input System to detect left mouse button press
-        if (Mouse.current.leftButton.wasPressedThisFrame)
-        {
-            Shoot();
-        }
+        inputManager = GetComponent<InputManager3D>();
     }
 
-    void Shoot()
+    private void Update()
+    {
+        // Using the new Input System to detect left mouse button press
+        // That's right, new input system, but do not hard code the shoot key
+        if (inputManager.Shoot)
+            Shoot();
+    }
+
+    private void Shoot()
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Rigidbody rb = bullet.GetComponent<Rigidbody>();
+
+        // You should cache the rigidbody for better performance
+        if (rb == null)
+            rb = bullet.GetComponent<Rigidbody>();
+
         if (rb != null)
         {
-            rb.linearVelocity = firePoint.forward * bulletSpeed;
+            // Usually, when update a bullet, you are going to multipled by delta time. Since this
+            rb.linearVelocity = bulletSpeed * Time.deltaTime * firePoint.forward;
         }
     }
 }

@@ -153,4 +153,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c49e643a310c324784244a07fe1f8c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BulletCollision
-  destructionDelay: 10
+  destructionDelay: 1
