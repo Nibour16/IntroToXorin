@@ -10,6 +10,7 @@ public class BulletCollision : MonoBehaviour
     {
         timer = new Timer(this, destructionDelay, "Bullet Timer", TimerType.Default);
         timer.BindCompleted(() => Destroy(gameObject));
+        TimerManager.Instance.Register(timer);
         timer.Start();
     }
 
